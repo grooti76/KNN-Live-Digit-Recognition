@@ -1,0 +1,1 @@
+from .classifier import KNN_DIGIT_CLASSIFIER
