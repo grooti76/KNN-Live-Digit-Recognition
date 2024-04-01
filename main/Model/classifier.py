@@ -1,38 +1,20 @@
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.neighbors import KNeighborsClassifier
 
-
 class KNN_DIGIT_CLASSIFIER:
-    def __init__(self,params:list) -> None:
-        self.train_dataset = params[0]
-        self.test_dataset = params[1]
-        if len(params) > 2:
-            raise Exception("Invalid number of arguments")
-        pass
+    def __init__(self,training_data) -> None:
+        self.training_data = training_data
     
-    def process(self):
-        train_data = pd.read_csv(self.train_dataset)
-        test_data = pd.read_csv(self.test_dataset)
-        X = train_data.drop('label', axis=1)
-        y = train_data['label']
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    def process_data(self):
+        train_df = pd.read_csv(self.training_data)
+        train_x = train_df.drop('label',axis=1)
+        train_y = train_df['label']
+        return train_x,train_y
+    
+    def train(self,x_train,y_train,num_neighbors=3):
+        self.model = KNeighborsClassifier(n_neighbors=num_neighbors)
+        self.model.fit(x_train,y_train)
         
-        return X_train, X_test, y_train, y_test, test_data
-    
-    
-    def train(self, X_train, y_train,num_neighbors:int=3):
-        knn = KNeighborsClassifier(n_neighbors=num_neighbors)
-        knn.fit(X_train, y_train)
-        return knn
-        
-    def predict(self, model, X_test):
-        return model.predict(X_test)
-    
-    def evaluate(self, y_test, y_pred):
-        acc = accuracy_score(y_test, y_pred)
-        cm = confusion_matrix(y_test, y_pred)
-        cr = classification_report(y_test, y_pred)
-        return acc, cm, cr
+    def predict(self,x_test):
+        return self.model.predict(x_test)
