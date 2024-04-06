@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
 class KNN_DIGIT_CLASSIFIER:
-    def __init__(self,training_data) -> None:
+    def __init__(self,training_data:str) -> None:
         self.training_data = training_data
     
     def process_data(self):
