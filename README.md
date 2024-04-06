@@ -1,1 +1,0 @@
-## Live Digit Recognition - KNN Classifier
