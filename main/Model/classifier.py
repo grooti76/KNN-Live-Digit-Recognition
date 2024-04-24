@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
-class KNN_DIGIT_CLASSIFIER:
+
+class DIGIT_CLASSIFIER:
     def __init__(self,training_data:str) -> None:
         self.training_data = training_data
     
@@ -18,3 +19,12 @@ class KNN_DIGIT_CLASSIFIER:
         
     def predict(self,x_test):
         return self.model.predict(x_test)
+    
+    def decoder(self,x):
+        return np.argmax(x,axis=1)
+    
+    def process_test_data(self,test_data:str):
+        test_df = pd.read_csv(test_data)
+        return test_df
+
+    
