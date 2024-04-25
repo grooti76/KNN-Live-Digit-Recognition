@@ -26,5 +26,6 @@ class DIGIT_CLASSIFIER:
     def process_test_data(self,test_data:str):
         test_df = pd.read_csv(test_data)
         return test_df
+    
 
     
