@@ -1,0 +1,16 @@
+#canvas{
+    background: rgba(255, 255, 255, 0.2);
+    width: 90%;
+    max-height: 25rem;
+    border-radius: .3rem;
+}
+
+#reset-btn{
+    width: 90%;
+    padding: .6rem;
+    background: #3867ff;
+    border: 0;
+    outline: 0;
+    border-radius: .3rem;
+    margin-top: .5rem;
+}
